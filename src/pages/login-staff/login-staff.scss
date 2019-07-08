@@ -1,0 +1,26 @@
+page-login-staff {
+  .background-img{
+    background-image: url('https://storage.googleapis.com/tfg-javier.appspot.com/background.jpg');
+    background-size: cover;
+    background-repeat: repeat;
+  }
+  .white-text{
+    color: white;
+  }
+  .submit-button{
+    font-size: 17px;
+    border: 2px solid white;
+    padding: 10px;
+    border-radius: 5px;
+    background-color:blue;
+  }
+  .transparent{
+    background-color: transparent;
+  }
+  .input-form{
+    margin-top: 130px;
+  }
+  .item-md.item-block .item-inner {
+    border: 0px !important;
+  }
+}

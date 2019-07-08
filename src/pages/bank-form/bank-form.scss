@@ -1,0 +1,39 @@
+page-bank-form {
+
+  .form-row{
+    margin-top: 20%;
+    padding: 10px;
+  }
+
+  .StripeElement {
+    background-color: black;
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 2px solid transparent;
+    box-shadow: 0 1px 3px 0 #e6ebf1;
+    -webkit-transition: box-shadow 10ms ease;
+    transition: box-shadow 10ms ease;
+  }
+
+  .StripeElement--focus {
+    box-shadow: 0 1px 3px 0 #cfd7df;
+  }
+
+  .StripeElement--invalid {
+    border-color: #fa755a;
+  }
+
+  .StripeElement--webkit-autofill {
+    background-color: black !important;
+  }
+
+  .content-header{
+    margin-top: 15%;
+    margin-bottom: 10px;
+    color:black;
+    font-size:25px;
+    font-weight: bold;
+    font-style: italic;
+    width: 100%;
+  }
+}

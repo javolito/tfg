@@ -1,0 +1,27 @@
+page-list-services {
+  .link-button{
+    background-color: #a64b93;
+    border-radius: 0px !important;
+  }
+
+  .closed{
+    background-color: lightgray;
+  }
+  .service-item{
+    height: 100% !important;
+  }
+  .div-for{
+    border-top: 1px solid #fec601;
+  }
+  .services-list{
+    height: 90vh !important;
+  }
+  .service-name{
+    font-size: 1.3rem !important;
+    color: white !important;
+  }
+  .service-description{
+    font-size: 0.7rem !important;
+    color: whitesmoke;
+  }
+}

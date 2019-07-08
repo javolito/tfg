@@ -1,12 +1,26 @@
 import { Component, ViewChild } from '@angular/core';
 
-import { Platform, MenuController, Nav } from 'ionic-angular';
+import {Platform, MenuController, Nav, App} from 'ionic-angular';
 
-import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
-import { ListPage } from '../pages/list/list';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import {LoginPage} from "../pages/login/login";
+import {CartServiceProvider} from "../providers/cart-service/cart-service";
 
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+import * as firebase from 'firebase';
+import {MenuServiceProvider} from "../providers/menu-service/menu-service";
+import {ServicePage} from "../pages/service/service";
+
+
+var firebaseConfig = {
+  apiKey: "AIzaSyCqOHeTwz2CNVsU3FADW03bk0sWh3cEUDI",
+  authDomain: "tfg-javier.firebaseapp.com",
+  databaseURL: "https://tfg-javier.firebaseio.com",
+  projectId: "tfg-javier",
+  storageBucket: "tfg-javier.appspot.com",
+  messagingSenderId: "711089774396",
+  appId: "1:711089774396:web:b47a21cac5ba100d"
+};
 
 
 @Component({
@@ -15,23 +29,21 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  // make HelloIonicPage the root (or first) page
-  rootPage = HelloIonicPage;
-  pages: Array<{title: string, component: any}>;
+  rootPage = LoginPage;
+  pages: Array<{title: string, component: any, icon: string}>;
+  serviceIdAux: String;
 
   constructor(
     public platform: Platform,
     public menu: MenuController,
     public statusBar: StatusBar,
-    public splashScreen: SplashScreen
+    public splashScreen: SplashScreen,
+    public cartService: CartServiceProvider,
+    public menuService: MenuServiceProvider,
+    public app: App
   ) {
     this.initializeApp();
-
-    // set our app's pages
-    this.pages = [
-      { title: 'Hello Ionic', component: HelloIonicPage },
-      { title: 'My First List', component: ListPage }
-    ];
+    firebase.initializeApp(firebaseConfig);
   }
 
   initializeApp() {
@@ -40,13 +52,19 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      if(localStorage.getItem('serviceIdlocal') != null){
+        this.serviceIdAux = JSON.parse(localStorage.getItem('serviceIdlocal')).id;
+      }
     });
   }
 
   openPage(page) {
-    // close the menu when clicking a link from the menu
     this.menu.close();
-    // navigate to the new page if it is not the current page
-    this.nav.setRoot(page.component);
+    this.nav.push(page.component);
+  }
+  logOut(){
+    this.menu.close();
+    this.menuService.resetUserMenu();
+    this.nav.setRoot(LoginPage);
   }
 }

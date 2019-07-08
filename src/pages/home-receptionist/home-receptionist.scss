@@ -1,0 +1,17 @@
+page-home-receptionist {
+  .checkOutActButton{
+    display: inline-block;
+    width:70%;
+  }
+  .checkOutInActButton{
+    width:100%;
+  }
+
+  .checkOutActInput{
+    display: inline-block;
+    width: 28%;
+  }
+  .checkOutInActInput{
+    display: none;
+  }
+}

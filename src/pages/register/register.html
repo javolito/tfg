@@ -1,0 +1,106 @@
+<!--
+  Generated template for the RegisterPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Registro</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="registerForm" (ngSubmit)="registerCustomer()">
+    <ion-list margin-bottom="0">
+      <ion-slides #slides (ionSlideWillChange)="controlSlide()">
+        <ion-slide style="margin-top: 3%">
+          <div class="login">
+            <p margin-bottom="0">Datos de Reserva</p>
+            <svg height="15" width="180" style="position: absolute; margin-left: -10%">
+              <line x1="0" y1="0" x2="150" y2="0" style="stroke:white; stroke-width:4;"/>
+            </svg>
+          </div>
+          <ion-item style="background-color: transparent;" >
+            <ion-icon name="person" item-start></ion-icon>
+            <ion-label floating>Nombre:</ion-label>
+            <ion-input formControlName="name" type="text"></ion-input>
+          </ion-item>
+          <ion-item style="background-color: transparent;" >
+            <ion-icon name="person" item-start></ion-icon>
+            <ion-label floating>Apellidos:</ion-label>
+            <ion-input formControlName="lastName" type="text"></ion-input>
+          </ion-item>
+          <ion-row>
+            <ion-col>
+              <ion-item style="background-color: transparent;" >
+                <ion-icon name="person" item-start></ion-icon>
+                <ion-label floating>Número de habitación:</ion-label>
+                <ion-input formControlName="roomNumber" type="number"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col>
+              <ion-item style="background-color: transparent;" >
+                <ion-icon name="person" item-start></ion-icon>
+                <ion-label floating>Número de personas:</ion-label>
+                <ion-input formControlName="people" type="number"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-item style="background-color: transparent;" >
+            <ion-icon name="calendar" item-start></ion-icon>
+            <ion-label floating>Fecha de entrada:</ion-label>
+            <ion-datetime formControlName="startDate" displayFormat="DD/MM/YYYY HH:mm"></ion-datetime>
+          </ion-item>
+          <ion-item style="background-color: transparent;" >
+            <ion-icon name="calendar" item-start></ion-icon>
+            <ion-label floating>Fecha de salida:</ion-label>
+            <ion-datetime formControlName="endDate" displayFormat="DD/MM/YYYY HH:mm"></ion-datetime>
+          </ion-item>
+          <br>
+        </ion-slide>
+
+        <ion-slide style="margin-top: 3%;margin-bottom: 20px">
+          <div class="login">
+            <p margin-bottom="0">Datos de usuario</p>
+            <svg height="15" width="180" style="position: absolute; margin-left: -10%">
+              <line x1="0" y1="0" x2="150" y2="0" style="stroke:white; stroke-width:4;"/>
+            </svg>
+          </div>
+          <ion-item style="background-color: transparent;" >
+            <ion-icon name="mail" item-start></ion-icon>
+            <ion-label floating>Correo electrónico:</ion-label>
+            <ion-input formControlName="email" type="email" pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})"></ion-input>
+          </ion-item>
+          <div formGroupName="passwordRetry">
+            <ion-item style="background-color: transparent;" >
+              <ion-icon name="eye" item-start></ion-icon>
+              <ion-label floating>Contraseña:</ion-label>
+              <ion-input #pass formControlName="password" type="password" minlength="4" maxlength="10" (ionChange)="setPassword(pass.value)"></ion-input>
+            </ion-item>
+            <ion-item style="background-color: transparent; border-bottom: none">
+              <ion-icon  name="eye" item-start></ion-icon>
+              <ion-label floating>Confirmar contraseña:</ion-label>
+              <ion-input formControlName="passwordConfirmation" type="password" pattern="{{passwordCorrect}}"></ion-input>
+            </ion-item>
+            <br>
+          </div>
+          <div padding>
+            <button ion-button block type="submit" [disabled]="!registerForm.valid">Registrar</button>
+          </div>
+        </ion-slide>
+
+      </ion-slides>
+    </ion-list>
+  </form>
+  <div class="fixed-content" style="margin-top: 140%;width:100%; display:table;text-align:center;">
+    <button ion-button round [disabled]="actualSlide < 1" type="submit"  ion-button class="btnPrev" (click)="prev()">
+      <ion-icon name="arrow-dropleft" light class="slide-icon"></ion-icon>
+      <ion-icon name="arrow-dropleft" light class="slide-icon"></ion-icon>
+    </button>
+    <button ion-button round [disabled]="actualSlide > 0" type="submit" ion-button class="btnNext" (click)="next()">
+      <ion-icon name="arrow-dropright" light class="slide-icon"></ion-icon>
+      <ion-icon name="arrow-dropright" light class="slide-icon"></ion-icon>
+    </button>
+  </div>
+</ion-content>

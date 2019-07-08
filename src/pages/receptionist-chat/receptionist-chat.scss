@@ -1,0 +1,15 @@
+page-receptionist-chat {
+  #content{
+    background: gray;
+  }
+  .own-message{
+    width: 70% !important;
+    float: right !important;
+    background: lightgoldenrodyellow;
+  }
+  .other-message{
+    width: 70% !important;
+    float: left !important;
+    background: lightblue;
+  }
+}

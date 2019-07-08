@@ -1,0 +1,115 @@
+<!--
+  Generated template for the BarServicePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar hideBackButton>
+    <ion-title text-center>Productos</ion-title>
+    <button ion-button menuToggle="cartMenu" right>
+      <ion-badge>{{cartService.getAmount()}}</ion-badge>
+      <ion-icon name="cart"></ion-icon>
+    </button>
+  </ion-navbar>
+  <ion-toolbar no-border-top>
+    <ion-segment [(ngModel)]="drinks">
+      <ion-segment-button value="alcohol" (click)="initializeItems('alcohol')">
+        Alcohol
+      </ion-segment-button>
+      <ion-segment-button value="notAlcohol" (click)="initializeItems('notAlcohol')" >
+        Sin alcohol
+      </ion-segment-button>
+    </ion-segment>
+    <ion-item style="background-color: inherit" no-lines>
+      <h1>Total: {{cartService.total()}}</h1>
+      <button ion-button item-end color="danger" (click)="clearAll()">Limpiar</button>
+    </ion-item>
+    <ion-searchbar *ngIf="drinks == 'alcohol'" (ionInput)="searchAlcoholic($event, alcoholList)"></ion-searchbar>
+    <ion-searchbar *ngIf="drinks == 'notAlcohol'" (ionInput)="searchNoAlcoholic($event, noAlcoholList)"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div [ngSwitch]="drinks">
+    <ion-slides (ionSlideDidChange)="slideChanged()">
+      <ion-slide>
+        <div *ngSwitchCase="'alcohol'">
+          <ion-list>
+
+            <div *ngFor="let product of cartService.alcoholList()">
+
+              <ion-item>
+                <ion-thumbnail item-start>
+                  <img src="{{product.image}}">
+                </ion-thumbnail>
+                <h3>{{product.name}} {{product.price}}€ </h3>
+                <h4 item-end>{{product.amount}}</h4>
+                <button ion-button item-end (click)="addProductPopUp(product)">
+                  <ion-icon name="add"></ion-icon>
+                </button>
+                <button *ngIf="product.amount > 0" ion-button danger (click)="cartService.decreaseAlcoholDrink(product)">
+                  <ion-icon name="md-remove"></ion-icon>
+                </button>
+              </ion-item>
+
+              <ion-row *ngIf="selectionable == product.name">
+                <ion-col col-3 *ngFor="let drink of cartService.noAlcoholList()" style="height: 80px;" margin-bottom>
+                  <ion-thumbnail>
+                    <img src="{{drink.image}}" style="max-height: 80px; width: auto" (click)="addSoda(product,drink)">
+                  </ion-thumbnail>
+                </ion-col>
+              </ion-row>
+
+
+              <div *ngFor="let drink of product.getOcurrences(); index as i">
+                <ion-item style="background-color: rgba(211,211,211,0.38)">
+                  <button item-start ion-button danger (click)="cartService.decreaseSoda(product,drink)">
+                    <ion-icon name="md-remove"></ion-icon>
+                  </button>
+                  <h4 item-start>{{product.sodaAmount[i]}}</h4>
+                  <h3 item-end>{{drink.name}} {{drink.price}}</h3>
+                  <ion-thumbnail item-end>
+                    <img src="{{drink.image}}">
+                  </ion-thumbnail>
+                </ion-item>
+              </div>
+            </div>
+          </ion-list>
+        </div>
+      </ion-slide>
+
+      <ion-slide>
+        <div *ngSwitchCase="'notAlcohol'">
+          <ion-list>
+            <div *ngFor="let product of cartService.noAlcoholList() ">
+              <ion-item *ngIf="product.price != 0">
+                <ion-thumbnail item-start>
+                  <img src="{{product.image}}">
+                </ion-thumbnail>
+                <h3>{{product.name}} {{product.price}}€ </h3>
+                <h4 item-end>{{product.amount}}</h4>
+                <button ion-button item-end (click)="cartService.addProduct(product)">
+                  <ion-icon name="add"></ion-icon>
+                </button>
+
+                <button *ngIf="cartService.isSoda(product) && product.amount > 0" ion-button >
+                  <ion-icon name="md-remove" (click)="cartService.decreaseSodaCart(product)"></ion-icon>
+                </button>
+
+                <button *ngIf="!cartService.isSoda(product) && product.amount > 0" ion-button >
+                  <ion-icon name="md-remove" (click)="cartService.decreaseProduct(product)"></ion-icon>
+                </button>
+              </ion-item>
+            </div>
+          </ion-list>
+        </div>
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+</ion-content>

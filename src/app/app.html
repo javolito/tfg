@@ -1,19 +1,58 @@
-<ion-menu [content]="content">
-
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>Pages</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
+<ion-menu [content]="content" [class.hide]="menuService.setMenuDisplay() == ''" type="overlay">
   <ion-content>
-    <ion-list>
-      <button ion-item *ngFor="let p of pages" (click)="openPage(p)">
+    <div class="logo">
+      <img style="width: 28%;" src="/assets/imgs/ULPGCHOTEL_COLOR_PRINCIPAL.png" alt="">
+    </div>
+    <ion-list *ngIf="menuService.getPages() != null">
+      <button ion-item *ngFor="let p of menuService.getPages()" (click)="openPage(p)">
         {{p.title}}
+        <ion-icon style="color: black" item-right name="{{ p.icon }}"></ion-icon>
       </button>
     </ion-list>
+    <button ion-item (click)="logOut()" class="bottom-fixed">
+      Cerrar Sesión
+      <ion-icon style="color: black" item-right name="ios-log-out"></ion-icon>
+    </button>
   </ion-content>
-
 </ion-menu>
 
-<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+<ion-menu id="cartMenu" side="right" [content]="content" persistent="true" *ngIf="menuService.setMenuDisplay() == 'waiter'" type="overlay">
+  <ion-content>
+    <ion-scroll  style="height: 85%;" scrollY="true">
+      <ion-list>
+
+        <div *ngFor="let product of cartService.listCart()">
+          <ion-item *ngIf="product.price > 0">
+            <ion-thumbnail item-start>
+              <img src="{{product.image}}">
+            </ion-thumbnail>
+            <h3>{{product.name}} {{product.price}}</h3>
+            <h4 item-end>{{product.amount}}</h4>
+            <button ion-button item-end >
+              <ion-icon name="add" (click)="cartService.addProduct(product)"></ion-icon>
+            </button>
+
+            <button *ngIf="cartService.isSoda(product)" ion-button >
+              <ion-icon name="md-remove" (click)="cartService.decreaseSodaCart(product)"></ion-icon>
+            </button>
+
+            <button *ngIf="!cartService.isSoda(product) && product.type == 1" ion-button >
+              <ion-icon name="md-remove" (click)="cartService.decreaseProduct(product)"></ion-icon>
+            </button>
+
+            <button *ngIf="!cartService.isSoda(product) && product.type == 0" ion-button >
+              <ion-icon name="md-remove" (click)="cartService.decreaseAlcoholDrink(product)"></ion-icon>
+            </button>
+          </ion-item>
+        </div>
+      </ion-list>
+    </ion-scroll>
+
+    <div padding>
+      <button ion-button block (click)="cartService.registerTransaction()">Continuar</button>
+    </div>
+
+  </ion-content>
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content></ion-nav>

@@ -1,0 +1,18 @@
+page-bar-service {
+  .active{
+    background-color: rgba(82, 144, 255, 0.57);
+  }
+
+  button {
+    ion-badge {
+      position: absolute;
+      top: -0.4rem;
+      right: -0.2rem;
+      opacity: 0.9;
+
+      & ~ ion-icon {
+        margin-right: 0rem;
+      }
+    }
+  }
+}

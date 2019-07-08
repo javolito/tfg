@@ -1,0 +1,36 @@
+<!--
+  Generated template for the ChatSessionPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>ChatSession</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content #contentBody padding id="content">
+  <div *ngFor="let message of messages">
+    <ion-card *ngIf="(message.roomNumber == roomNumberCustomer && message.customerEmail == customerEmail)  || (message.roomNumber == 0 && message.customerRoom == roomNumberCustomer && message.customerEmail == customerEmail)" [class.other-message]="message.roomNumber > 0" [class.own-message]="message.roomNumber == 0">
+      <ion-card-header>
+        {{message.roomNumber}} dice:
+      </ion-card-header>
+      <ion-card-content>
+        {{message.message}}
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <div #contentEnd id="content-end"></div>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-input placeholder="Escriba aquí..." [(ngModel)]="inputMessage"></ion-input>
+    <ion-buttons end>
+      <button ion-button icon-right (click)="sendMessage() ">
+        Enviar
+        <ion-icon name="send"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
