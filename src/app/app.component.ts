@@ -13,7 +13,7 @@ import {ServicePage} from "../pages/service/service";
 
 
 var firebaseConfig = {
-  apiKey: "AIzaSyCqOHeTwz2CNVsU3FADW03bk0sWh3cEUDI",
+  apiKey: "",
   authDomain: "tfg-javier.firebaseapp.com",
   databaseURL: "https://tfg-javier.firebaseio.com",
   projectId: "tfg-javier",
