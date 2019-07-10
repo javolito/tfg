@@ -1,27 +1,43 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:500,700");
+
 page-list-services {
+  font-family: 'Montserrat' !important;
   .link-button{
-    background-color: #a64b93;
+    background-color: #f49a41;
+    color: white;
     border-radius: 0px !important;
+  }
+  .font-montse{
+    font-family: 'Montserrat' !important;
   }
 
   .closed{
     background-color: lightgray;
   }
   .service-item{
-    height: 100% !important;
+    height: 20vh !important;
+    background-size: cover;
   }
-  .div-for{
-    border-top: 1px solid #fec601;
+  .background-toolbar{
+    background: rgba(32, 52, 95, 0.5);
   }
-  .services-list{
-    height: 90vh !important;
+  .color-blue{
+    color: #20345F
   }
   .service-name{
-    font-size: 1.3rem !important;
+    font-size: 25px !important;
     color: white !important;
+    font-weight: bold;
   }
   .service-description{
-    font-size: 0.7rem !important;
+    font-size: 12px !important;
     color: whitesmoke;
   }
+  .div-title-subtitle{
+    padding: 10px !important;
+    width: fit-content;
+    margin: 0 auto;
+    background: rgba(32, 52, 95, 0.6);
+  }
+
 }

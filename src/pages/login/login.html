@@ -8,18 +8,18 @@
   <div class="logo">
     <img style="width: 28%;" src="/assets/imgs/ULPGCHOTEL_COLOR_PRINCIPAL.png" alt="">
   </div>
-  <div padding>
+  <div padding class="background-color-div">
     <form [formGroup]="loginForm" (ngSubmit)="login()">
       <ion-list no-border>
         <ion-item class="transparent" no-border>
-          <ion-icon class="white-text" name="mail" item-start></ion-icon>
+          <ion-icon class="white-text icon-move" name="mail" item-start></ion-icon>
           <ion-label class="white-text" floating>Email:</ion-label>
           <ion-input class="white-text" formControlName="email" type="email" pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})"></ion-input>
         </ion-item>
         <ion-item class="transparent" no-border>
 
-          <ion-icon style="z-index:9999" *ngIf="showPassword" class="white-text" name="eye" item-start (click)="changeShowPassword()"></ion-icon>
-          <ion-icon style="z-index:9999" *ngIf="!showPassword" class="white-text" name="eye-off" item-start (click)="changeShowPassword()"></ion-icon>
+          <ion-icon style="z-index:9999" *ngIf="showPassword" class="white-text icon-move" name="eye" item-start (click)="changeShowPassword()"></ion-icon>
+          <ion-icon style="z-index:9999" *ngIf="!showPassword" class="white-text icon-move" name="eye-off" item-start (click)="changeShowPassword()"></ion-icon>
           <ion-label class="white-text" floating>Password:</ion-label>
           <ion-input *ngIf="showPassword" class="white-text" formControlName="password" type="text"></ion-input>
           <ion-input *ngIf="!showPassword" class="white-text" formControlName="password" type="password"></ion-input>
@@ -36,7 +36,7 @@
   </div>
 </ion-content>
 <ion-footer>
-  <ion-toolbar transparent text-center>
-    <button ion-button color="light" clear (click)="goToLogInStaff()">¿Staff?</button>
+  <ion-toolbar transparent text-center class="background-toolbar">
+    <button ion-button color="light" clear (click)="goToLogInStaff()">¿STAFF?</button>
   </ion-toolbar>
 </ion-footer>

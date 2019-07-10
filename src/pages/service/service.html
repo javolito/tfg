@@ -5,22 +5,38 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>{{serviceObject.name}}</ion-title>
   </ion-navbar>
-  <ion-toolbar no-border-top text-center>
-    <p>Horario de apertura: {{startHour}} - {{endHour}}</p>
+  <ion-toolbar no-border-top text-center color="secondary">
+    <p class="hours">Horario de apertura: {{startHour}} - {{endHour}}</p>
   </ion-toolbar>
 </ion-header>
 <ion-content padding>
   <ion-list>
-    <ion-item *ngFor="let product of catalogue" (click)="externalDate.instance.show(); setProductClick(product);">
-      <h1>{{ product.productName}} </h1>
-      <p>{{product.productDescription}}</p>
-      <p>{{product.price}}</p>
-    </ion-item>
+    <ion-grid>
+      <ion-row>
+        <ion-col width-20>
+          <ion-card *ngFor="let product of catalogue" (click)="externalDate.instance.show(); setProductClick(product);">
+            <img style="width: fit-content;" src="{{product.productImageURL}}"/>
+            <ion-card-content class="background-color-blue">
+              <ion-card-title style="text-align: center">
+                <div class="title-product">
+                  {{product.productName}}
+                </div>
+              </ion-card-title>
+              <p class="description">
+                {{product.productDescription}}
+              </p>
+              <div class="price-div">
+                <h2 class="price">{{product.price}} €</h2>
+              </div>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-list>
-
   <div class="mbsc-grid">
     <div class="mbsc-row">
       <div class="mbsc-col-sm-12 mbsc-col-md-6">

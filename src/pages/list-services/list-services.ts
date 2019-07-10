@@ -107,8 +107,8 @@ export class ListServicesPage {
     this.navCtrl.push(ReceptionistChatPage);
   }
   linkBracelete(){
-    /*this.nfc.enabled().
-    then(() => {*/
+    this.nfc.enabled().
+    then(() => {
 
       let loading = this.loadingCtrl.create({
         content: "LEA LA PULSERA",
@@ -119,12 +119,12 @@ export class ListServicesPage {
       });
       loading.present();
 
-      /*this.myListener = this.nfc.addNdefListener(() => {}, (err) => {}).
-      subscribe((event) => {*/
+      this.myListener = this.nfc.addNdefListener(() => {}, (err) => {}).
+      subscribe((event) => {
         loading.dismiss();
-        //this.myListener.unsubscribe();
-        let nfcTag = "4,112,-68,-102,-86,74,-127";
-        //let nfcTag = event.tag.id;
+        this.myListener.unsubscribe();
+
+        let nfcTag = event.tag.id;
         let loading2 = this.loadingCtrl.create({
           content: "Vinculando..."
         });
@@ -146,8 +146,8 @@ export class ListServicesPage {
           loading2.dismiss();
           this.errorService.handleError(error);
         });
-      //});
-    /*},error => {
+      });
+    },error => {
       let alert = this.alertCtrl.create({
         title: 'Ups',
         subTitle: 'NFC desactivado',
@@ -161,7 +161,7 @@ export class ListServicesPage {
         enableBackdropDismiss: false
       });
       alert.present();
-    });*/
+    });
   }
 
   getLinkAvailability(){

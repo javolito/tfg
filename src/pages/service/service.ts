@@ -45,6 +45,7 @@ export class ServicePage {
   dateString: any;
   startHour: any;
   endHour: any;
+  orange: any;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -60,6 +61,7 @@ export class ServicePage {
       this.serviceObject = this.navParams.get('service')
       this.serviceId = this.serviceObject.id;
     }
+    this.orange = 'secondary';
     this.startHour = this.serviceObject.startHour.toLocaleString();
     var sizeStart = this.startHour.length;
     this.startHour = this.startHour.substring(sizeStart-11, sizeStart);

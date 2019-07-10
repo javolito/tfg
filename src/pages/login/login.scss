@@ -1,6 +1,6 @@
 page-login {
   .background-img{
-    background-image: url('https://storage.googleapis.com/tfg-javier.appspot.com/background.jpg');
+    background-image: url('/assets/imgs/fondo2login.jpg');
     background-size: cover;
     background-repeat: repeat;
   }
@@ -9,7 +9,15 @@ page-login {
     text-align: center;
   }
   .white-text{
-    color: white;
+    color: white !important;
+  }
+  .background-color-div{
+    background: rgba(32, 52, 95, 0.6);
+    padding-bottom: 0 !important;
+  }
+  .background-toolbar{
+    padding: 0 !important;
+    background: rgba(32, 52, 95, 0.5);
   }
   .submit-button{
     font-size: 17px;
@@ -20,6 +28,9 @@ page-login {
   }
   .transparent{
     background-color: transparent;
+  }
+  .icon-move{
+    transform: translateY(14px);
   }
   .item-md.item-block .item-inner {
     border: 0px !important;
